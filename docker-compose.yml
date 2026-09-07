@@ -1,7 +1,4 @@
-version: '3.8'
-
 services:
-  # MySQL 資料庫容器
   db:
     image: mysql:8.0
     container_name: shopee_mysql
@@ -16,17 +13,16 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
-  # FastAPI 後端容器
-backend:
-  build: ./backend
-  container_name: shopee_backend
-  restart: always
-  ports:
-    - "8000:8000"
-  environment:
-    - DATABASE_URL=mysql+pymysql://shopee_user:shopee_password@db:3306/shopee_db
-  depends_on:
-    - db
+  backend:
+    build: ./backend
+    container_name: shopee_backend
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=mysql+pymysql://shopee_user:shopee_password@db:3306/shopee_db
+    depends_on:
+      - db
 
 volumes:
   mysql_data:

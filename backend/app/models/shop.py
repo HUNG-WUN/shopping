@@ -21,7 +21,7 @@ class Product(Base):
 class ProductSKU(Base):
     __tablename__ = "product_skus"
 
-    id = Column(Integer, primary_primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True)
     product_id = Column(Integer, ForeignKey("products.id"), nullable=False)
     sku_name = Column(String(100), nullable=False)  # 例如: "紅色, L號"
     price = Column(Numeric(10, 2), nullable=False)
