@@ -1,20 +1,18 @@
 services:
-  # 1. MySQL 資料庫服務
   db:
     image: mysql:8.0
     container_name: shopee_mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
-      MYSQL_DATABASE: shopee_db
-      MYSQL_USER: shopee_user
-      MYSQL_PASSWORD: shopee_password
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     ports:
       - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
 
-  # 2. FastAPI 後端服務
   backend:
     build: ./backend
     container_name: shopee_backend
@@ -22,11 +20,10 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=mysql+pymysql://shopee_user:shopee_password@db:3306/shopee_db
+      - DATABASE_URL=mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DATABASE}
     depends_on:
       - db
 
-  # 3. React 前端服務 (Nginx)
   frontend:
     build: ./frontend
     container_name: shopee_frontend
