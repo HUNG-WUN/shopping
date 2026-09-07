@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from backend.app.core.database import init_db
+from backend.app.api.auth import router as auth_router
 
 app = FastAPI(title="Shopee Clone API", version="1.0.0")
 
@@ -12,9 +13,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# 註冊 API 路由
+app.include_router(auth_router)
+
 @app.on_event("startup")
 def startup_event():
-    # 容器啟動時自動建立資料庫 Models
     try:
         init_db()
         print("Database tables created successfully!")
