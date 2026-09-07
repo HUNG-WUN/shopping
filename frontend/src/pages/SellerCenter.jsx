@@ -72,10 +72,10 @@ export default function SellerCenter() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <div className="bg-white rounded-sm shadow-sm p-6">
+      <div className="bg-white rounded-2xl shadow-lg shadow-slate-200/60 p-6 sm:p-8">
         <div className="flex items-center gap-2 border-b pb-4 mb-6">
           <PackagePlus className="w-6 h-6 text-shopee-primary" />
-          <h1 className="text-xl font-bold text-gray-800">賣家中心 - 上架新商品</h1>
+          <h1 className="text-2xl font-bold text-gray-800">賣家中心 - 上架新商品</h1>
         </div>
 
         {message && (
@@ -87,41 +87,41 @@ export default function SellerCenter() {
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* 基本資訊 */}
           <div className="space-y-4">
-            <h2 className="font-bold text-gray-700 text-sm border-l-4 border-shopee-primary pl-2">
+            <h2 className="font-bold text-gray-700 text-lg border-l-4 border-shopee-primary pl-2">
               基本資訊
             </h2>
             
             <div>
-              <label className="block text-sm text-gray-600 mb-1">商品名稱 *</label>
+              <label className="block text-base font-medium text-gray-700 mb-2">商品名稱 *</label>
               <input
                 type="text"
                 placeholder="例如: 韓版舒適大尺碼短袖 T 恤"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="w-full border rounded p-2 text-sm outline-none focus:border-shopee-primary"
+                className="w-full border rounded-lg px-3 py-3 text-base outline-none focus:border-shopee-primary focus:ring-4 focus:ring-orange-100"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm text-gray-600 mb-1">商品封面圖片網址 (URL)</label>
+              <label className="block text-base font-medium text-gray-700 mb-2">商品封面圖片網址 (URL)</label>
               <input
                 type="text"
                 placeholder="https://example.com/image.jpg"
                 value={coverImage}
                 onChange={(e) => setCoverImage(e.target.value)}
-                className="w-full border rounded p-2 text-sm outline-none focus:border-shopee-primary"
+                className="w-full border rounded-lg px-3 py-3 text-base outline-none focus:border-shopee-primary focus:ring-4 focus:ring-orange-100"
               />
             </div>
 
             <div>
-              <label className="block text-sm text-gray-600 mb-1">商品文案說明</label>
+              <label className="block text-base font-medium text-gray-700 mb-2">商品文案說明</label>
               <textarea
                 rows="4"
                 placeholder="詳細介紹您的商品特點、材質與洗滌方式..."
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                className="w-full border rounded p-2 text-sm outline-none focus:border-shopee-primary"
+                className="w-full border rounded-lg px-3 py-3 text-base outline-none focus:border-shopee-primary focus:ring-4 focus:ring-orange-100"
               />
             </div>
           </div>
@@ -129,13 +129,13 @@ export default function SellerCenter() {
           {/* 規格與價格庫存設定 (SKU) */}
           <div className="space-y-4 pt-4 border-t">
             <div className="flex justify-between items-center">
-              <h2 className="font-bold text-gray-700 text-sm border-l-4 border-shopee-primary pl-2">
+              <h2 className="font-bold text-gray-700 text-lg border-l-4 border-shopee-primary pl-2">
                 銷售資訊 (商品規格與庫存)
               </h2>
               <button
                 type="button"
                 onClick={handleAddSku}
-                className="text-xs bg-orange-50 text-shopee-primary border border-shopee-primary px-3 py-1 rounded flex items-center gap-1 hover:bg-orange-100"
+                className="text-base bg-orange-50 text-shopee-primary border border-shopee-primary px-4 py-2 rounded-lg flex items-center gap-1 hover:bg-orange-100"
               >
                 <Plus className="w-3 h-3" /> 新增規格
               </button>
@@ -149,7 +149,7 @@ export default function SellerCenter() {
                     placeholder="規格名稱 (例: 紅色, L)"
                     value={sku.sku_name}
                     onChange={(e) => handleSkuChange(index, 'sku_name', e.target.value)}
-                    className="flex-1 border rounded p-1.5 text-sm bg-white"
+                    className="flex-1 border rounded-lg p-2.5 text-base bg-white"
                     required
                   />
                   <input
@@ -157,7 +157,7 @@ export default function SellerCenter() {
                     placeholder="價格 ($)"
                     value={sku.price}
                     onChange={(e) => handleSkuChange(index, 'price', e.target.value)}
-                    className="w-24 border rounded p-1.5 text-sm bg-white"
+                    className="w-28 border rounded-lg p-2.5 text-base bg-white"
                     required
                   />
                   <input
@@ -165,7 +165,7 @@ export default function SellerCenter() {
                     placeholder="庫存數量"
                     value={sku.stock}
                     onChange={(e) => handleSkuChange(index, 'stock', e.target.value)}
-                    className="w-24 border rounded p-1.5 text-sm bg-white"
+                    className="w-28 border rounded-lg p-2.5 text-base bg-white"
                     required
                   />
                   <button
@@ -185,13 +185,13 @@ export default function SellerCenter() {
             <button
               type="button"
               onClick={() => navigate('/')}
-              className="px-6 py-2 border rounded text-sm text-gray-600 hover:bg-gray-50"
+              className="px-6 py-3 border rounded-lg text-base text-gray-600 hover:bg-gray-50"
             >
               取消
             </button>
             <button
               type="submit"
-              className="px-8 py-2 bg-shopee-primary text-white rounded text-sm font-medium hover:bg-shopee-hover transition-colors shadow-sm"
+              className="px-8 py-3 bg-shopee-primary text-white rounded-lg text-base font-bold hover:bg-shopee-hover transition-colors shadow-sm"
             >
               儲存並上架商品
             </button>

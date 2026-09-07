@@ -68,23 +68,23 @@ export default function Cart() {
     }
   };
 
-  if (loading) return <div className="max-w-6xl mx-auto p-8 text-center">購物車載入中...</div>;
+  if (loading) return <div className="max-w-6xl mx-auto p-10 text-center text-lg text-slate-500">購物車載入中...</div>;
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-6">
-      <h2 className="text-xl font-bold text-gray-800 mb-4">我的購物車</h2>
+      <h2 className="mb-5 text-3xl font-bold text-gray-800">我的購物車</h2>
 
       {cartItems.length === 0 ? (
-        <div className="bg-white p-12 text-center rounded-sm shadow-sm">
-          <p className="text-gray-500 mb-4">你的購物車是空的</p>
-          <button onClick={() => navigate('/')} className="bg-shopee-primary text-white px-6 py-2 rounded-sm text-sm">
+        <div className="rounded-2xl bg-white p-14 text-center shadow-lg shadow-slate-200/60">
+          <p className="mb-5 text-lg text-gray-500">你的購物車是空的</p>
+          <button onClick={() => navigate('/')} className="rounded-lg bg-shopee-primary px-7 py-3 text-base font-bold text-white shadow hover:bg-shopee-hover">
             去逛逛商品
           </button>
         </div>
       ) : (
         <div className="space-y-4">
           {/* 列表標頭 */}
-          <div className="bg-white p-4 rounded-sm shadow-sm grid grid-cols-12 text-sm text-gray-500">
+          <div className="grid grid-cols-12 rounded-xl bg-white p-5 text-base font-medium text-gray-500 shadow-sm">
             <span className="col-span-6">商品</span>
             <span className="col-span-2 text-center">單價</span>
             <span className="col-span-2 text-center">數量</span>
@@ -93,7 +93,7 @@ export default function Cart() {
 
           {/* 購物車項目 */}
           {cartItems.map((item) => (
-            <div key={item.id} className="bg-white p-4 rounded-sm shadow-sm grid grid-cols-12 items-center text-sm">
+            <div key={item.id} className="grid grid-cols-12 items-center rounded-xl bg-white p-5 text-base shadow-sm">
               <div className="col-span-6 flex items-center gap-3">
                 <input
                   type="checkbox"
@@ -101,10 +101,10 @@ export default function Cart() {
                   onChange={() => toggleSelect(item.id)}
                   className="w-4 h-4 accent-shopee-primary"
                 />
-                <img src={item.cover_image || "https://via.placeholder.com/80"} alt="" className="w-16 h-16 object-cover rounded" />
+                <img src={item.cover_image || "https://via.placeholder.com/80"} alt="" className="h-20 w-20 rounded-lg object-cover" />
                 <div>
-                  <p className="font-medium text-gray-800 line-clamp-1">{item.product_title}</p>
-                  <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded">規格: {item.sku_name}</span>
+                  <p className="font-semibold text-gray-800 line-clamp-1">{item.product_title}</p>
+                  <span className="mt-1 inline-block rounded bg-gray-100 px-2 py-1 text-sm text-gray-500">規格: {item.sku_name}</span>
                 </div>
               </div>
               <span className="col-span-2 text-center text-shopee-primary font-bold">${item.price}</span>
@@ -118,24 +118,24 @@ export default function Cart() {
           ))}
 
           {/* 底部結帳列 */}
-          <div className="bg-white p-4 rounded-sm shadow-sm flex items-center justify-between sticky bottom-0 border-t border-orange-200">
+          <div className="sticky bottom-0 flex items-center justify-between rounded-xl border-t border-orange-200 bg-white p-5 shadow-lg shadow-orange-100">
             <div className="flex items-center gap-3">
-              <span className="text-sm text-gray-500">寄送地址:</span>
+              <span className="text-base font-medium text-gray-600">寄送地址:</span>
               <input
                 type="text"
                 value={shippingAddress}
                 onChange={(e) => setShippingAddress(e.target.value)}
-                className="border border-gray-300 rounded px-2 py-1 text-sm w-72"
+                className="w-72 rounded-lg border border-gray-300 px-3 py-2 text-base"
               />
             </div>
             <div className="flex items-center gap-6">
               <div>
-                <span className="text-sm text-gray-600">總金額 ({selectedIds.length} 個商品): </span>
-                <span className="text-2xl font-bold text-shopee-primary">${totalPrice}</span>
+                <span className="text-base text-gray-600">總金額 ({selectedIds.length} 個商品): </span>
+                <span className="text-3xl font-bold text-shopee-primary">${totalPrice}</span>
               </div>
               <button
                 onClick={handleCheckout}
-                className="bg-shopee-primary text-white px-8 py-3 rounded-sm font-medium hover:bg-shopee-hover transition-colors"
+                className="rounded-lg bg-shopee-primary px-8 py-3.5 text-base font-bold text-white shadow transition-colors hover:bg-shopee-hover"
               >
                 去結帳
               </button>
