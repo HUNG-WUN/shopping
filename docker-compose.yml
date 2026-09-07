@@ -12,21 +12,21 @@ services:
       MYSQL_USER: shopee_user
       MYSQL_PASSWORD: shopee_password
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql
 
   # FastAPI 後端容器
-  backend:
-    build: ./backend
-    container_name: shopee_backend
-    restart: always
-    ports:
-      - "8000:8000"
-    environment:
-      - DATABASE_URL=mysql+pymysql://shopee_user:shopee_password@db:3306/shopee_db
-    depends_on:
-      - db
+backend:
+  build: ./backend
+  container_name: shopee_backend
+  restart: always
+  ports:
+    - "8000:8000"
+  environment:
+    - DATABASE_URL=mysql+pymysql://shopee_user:shopee_password@db:3306/shopee_db
+  depends_on:
+    - db
 
 volumes:
   mysql_data:

@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from backend.app.core.database import init_db
 from backend.app.api.auth import router as auth_router
 from backend.app.api.products import router as product_router
+from backend.app.api.cart import router as cart_router
+from backend.app.api.orders import router as order_router
 
 app = FastAPI(title="Shopee Clone API", version="1.0.0")
 
@@ -17,6 +19,8 @@ app.add_middleware(
 # 註冊 API 路由
 app.include_router(auth_router)
 app.include_router(product_router)
+app.include_router(cart_router)
+app.include_router(order_router)
 
 @app.on_event("startup")
 def startup_event():
