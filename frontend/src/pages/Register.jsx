@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { CheckCircle2, LockKeyhole, Mail, Store, UserRound } from 'lucide-react';
+import { CheckCircle2, Eye, EyeOff, LockKeyhole, Mail, Store, UserRound } from 'lucide-react';
 import api from '../api/axios';
 
 export default function Register() {
@@ -8,6 +8,8 @@ export default function Register() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [isSeller, setIsSeller] = useState(true);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -70,11 +72,21 @@ export default function Register() {
           </label>
           <label className="block">
             <span className="mb-2 flex items-center gap-2 text-base font-medium text-slate-700"><LockKeyhole className="h-4 w-4" />密碼</span>
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="至少 8 個字元" minLength="8" className="w-full rounded-lg border border-slate-300 px-4 py-3 text-base outline-none transition focus:border-shopee-primary focus:ring-4 focus:ring-orange-100" required />
+            <div className="relative">
+              <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="至少 8 個字元" minLength="8" className="w-full rounded-lg border border-slate-300 px-4 py-3 pr-12 text-base outline-none transition focus:border-shopee-primary focus:ring-4 focus:ring-orange-100" required />
+              <button type="button" onClick={() => setShowPassword((visible) => !visible)} className="absolute inset-y-0 right-0 flex w-12 items-center justify-center text-slate-500 transition hover:text-shopee-primary" aria-label={showPassword ? '隱藏密碼' : '顯示密碼'} aria-pressed={showPassword}>
+                {showPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+              </button>
+            </div>
           </label>
           <label className="block">
             <span className="mb-2 flex items-center gap-2 text-base font-medium text-slate-700"><LockKeyhole className="h-4 w-4" />確認密碼</span>
-            <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className="w-full rounded-lg border border-slate-300 px-4 py-3 text-base outline-none transition focus:border-shopee-primary focus:ring-4 focus:ring-orange-100" required />
+            <div className="relative">
+              <input type={showConfirmPassword ? 'text' : 'password'} value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} className="w-full rounded-lg border border-slate-300 px-4 py-3 pr-12 text-base outline-none transition focus:border-shopee-primary focus:ring-4 focus:ring-orange-100" required />
+              <button type="button" onClick={() => setShowConfirmPassword((visible) => !visible)} className="absolute inset-y-0 right-0 flex w-12 items-center justify-center text-slate-500 transition hover:text-shopee-primary" aria-label={showConfirmPassword ? '隱藏確認密碼' : '顯示確認密碼'} aria-pressed={showConfirmPassword}>
+                {showConfirmPassword ? <EyeOff className="h-5 w-5" /> : <Eye className="h-5 w-5" />}
+              </button>
+            </div>
           </label>
 
           <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-orange-200 bg-orange-50 p-4">
