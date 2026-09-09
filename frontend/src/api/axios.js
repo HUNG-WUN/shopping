@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://localhost:8000/api/v1',
+  baseURL: '/api/v1', // 改為相對路徑，自動跟隨目前的網域 (無論是 localhost 還是 ngrok)
   headers: {
     'Content-Type': 'application/json',
   },
